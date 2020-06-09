@@ -11,15 +11,15 @@ app.use(
   unblocker({
     requestMiddleware: [
       whitelist({
-        allowedDomains: ["wikipedia.org"],
-        message: "The requested url is not permitted."
+        allowedDomains: ["iyg.etr.org"],
+        message: "ERROR. Request Failed; Request not permitted. Make sure you are only visiting the URLs you are supposed to"
       })
     ]
   })
 );
 
 app.get("/", (req, res) =>
-  res.redirect("/proxy/https://en.wikipedia.org/wiki/Main_Page")
+  res.redirect("https://iyg.etr.org/P4OBM6E0A0ASGLA60HHVEEO?Course=IYG")
 );
 
 app.listen(8080);
