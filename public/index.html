@@ -1,77 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Node Unblocker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- header font -->
-  <link href="//fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css">
-  
-  <!-- body font -->
-  <link href="//fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
-  
-  <style type="text/css">
-  
-    /* fonts */
-    body { font-family: 'Droid Sans', arial, serif;  letter-spacing: 1px;}
-    h1 { font-family: 'Orbitron', arial, serif; letter-spacing: 2px;}
-    h2, h3, h4, h5, h6 { letter-spacing: 2px; font-weight: normal;}
-  
-    /* colors */
-    body { background-color: #000306; color: white;}
-    .container { background-color: #3F4038; border-color: #5B3E38}
-    a { color: #62BECB; }
-    a:hover {color: #82DEEB }
-
-	#error {  border:1px dotted white; background: brown; }
-    
-    /* stripes and borders */
-    
-    .main { background-repeat: repeat-x;  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAB9CAIAAADbWVFQAAADd0lEQVR4nO3d6VbbMBiE4Tcm3Tf2tRfSf+393wd03/dCk/6AgjF2otiSvpGsuYBY52HO4JPEMHn+4hl6eTqzPkFbptYHaMnRjLn1GW7muKKyPkMzR5KdOq4AMSxlKaSwxKXQ2axDyZ06ud4liWYdSnbq5IaNPVYqUphjJSSF7WYdSO7Uy+7+mDXrQLJTC6SwwkpRChOsRKWIj5WuFJEHfl9y0V85FyZes/YlO+UuRTSsDKSIg5WHFBE2a09yp173KknYZu1JdqqfFEGxMpMiHFZ+UgTCylKKEAO/K7nob3y0wnOzdiU75UUKv1h5S+ERK3spfG3WjuROvfX928vD6+1Idsq7FMOxxiPFQKxRSTEEa2xS9B74bclFfxf4Dac+L78t2anQUvTAGq0Uq2KNWYqVNmtLcqfeR/wwz/VSW5KdiimFI1aROs/yCxapyyy5ZpGqZ9HAb0ou+ge77991XnlTslOGUnRhFanWtFy/SHWluVkbkjv1UUCKRrM2JDslIkUdq0gtzcVZipRLKoqUc6brkov+SU8K88dRWqMptT7Tw5KVQq1ZylLAVGewPktKPaltusoBZaXqkThjElIoYKUihTlWQlLYDvwXSanH3XfpZueVlVoQmyOnKIUJVqJSwHQ+CX+QWr7GvZxjHs1xcYj6U5aVckw8rNSliIaVgRRx7rO+SUo9nK/8rmfwZslK9UhYrJykCIqVmRThsPKTItDAf5eUerD6ojfiv1myUsPjGStjKfxi5S2Fx836ISl1f/BO1eOnWbJSfuMBayRSDMcajxQDsUYlxZCB/ykpdc/rojfSs1myUkHTB2ucUvTAGq0Uq27WL0mpuyF3qp4VmiUrFS2uWEUKR6widZ7lWEXqMksG/rek1J1Yi97IombJSlmlE6tI3Uw7VpFqTctm/ZGUum20U/U0myUrpZBrWEVqca6witTSXGAVKZdM53AqKXVLYNEbqWSlBKP4NWtNqdOJHpasFDr/OfM8U72dAs7+L5VQs4Qeqq3lrLbpKlj6UohgJSGFAlYqUpgP/Jrkov/tuPe0bNaaoFO3FIZYyUlhhZWiFCabVUnu1Ezt4UygEnRykyIyVtJSxMRKXYpoWBlIEWfgJ5KL3uPPDgRv1kTQqZcUobFykiIoVmZSBNwsyZ1i2KczYZql6DRUiiBYmUrhHytfKeAfdPYd7TpexlgAAAAASUVORK5CYII=); }
-    .footer { min-height: 60px; background-repeat: repeat-x; background-position: bottom left; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAA8CAIAAAAfXYiZAAAB+ElEQVR4nO3b11aDQBSF4T2IXWM3lhfxTt//PWKvsTfwIllLEobQZuZsYM4DyFkffyKBRJ2encBPsQmlF9BNHEtvoBul+LBiAEp6idQogK0sRdlUrMYnjwhLUTYVJzZiwQoom4rUxMmjwAoom4pSG8ljzTEmhV/duQucrzExDZKCbFkhpdRP9vuBWFmNk4JUWfOUUt95/2MEymqoFNyXtUAp9VXsusVpWY2WgsuyFimlPstcCzsqqwVScIPVDik4eBkuUUp9VPokaresNknBalnLlFLvNe5u2CqrfVKwVNYKpdRb7Ttm5stqqxSMl7VKKfVq6C6sybLaLQWDZa1RSr0YvbNvpqwuSMFIWeuUUs8WnhbVLas7UqhZVo9SamjtCWR1rF5kcA1jM7T5Ybfi3+6gFKqVtUEp9WT/1lzpI3RWCmXL2qSUenT11KXEcTouheJlbVFKPbh9RlzoaF5qNPllbVNK3Ut8oyXnmF4qObPK2qGUupP7/l3mkb1UevRl7VJK3Qp/p1NXlpfKmumy9iilbgikMFWWl5o9/4t4qdwZvwz3KaWumaQwKstLFZywTyl1xScF8Z+jaIdTqh8hZPsx1iWl1EEEsJXFLAUwlXVBKXWYeE9nWZBfCiRlnVNKHaWuE+TXbIoUxMsaUEodZ1x7Si7bLCkAf1M7eHbSdYGuAAAAAElFTkSuQmCC); }
-    .container { border-style: solid; border-width: 1px; border-radius: 10px;  -moz-border-radius: 10px;  -webkit-border-radius: 10px;  overflow:hidden;  /* otherwise the background image appears on top of the curved border */ }
-    
-    
-    /* layout */
-    body { text-align: center; }
-    .container { width: 760px; margin: 40px auto; text-align: left;  max-width: calc(100% - 10px);}
-    
-    h2, h3, h4, h5, h6 { margin-bottom: 0;  }
-    ul { line-height: 150%; }
-    ul, p {  margin-top: 5px; margin-bottom: 0; }
-    .main, .footer { padding: 1px 10px 0 10px; }
-    
-    #error {display: none; padding: 5px 10px; margin: 30px 10px; }
-    
-    form ul { list-style-type: none; padding-left: 25px;}
-    input[type=text] { width: 640px; max-width: calc(100% - 8em) }
-    
-    .footer { position: relative; clear: both;}
-    .footer p { margin:0; position: absolute; bottom: 10px;  right: 10px; padding-left: 10px; }
-    
-    #google-ad {
-        text-align: center;
-        margin: 10px auto;
-    }
-    @media(min-width: 768px) {
-        #google-ad {
-            margin: 0;
-            float:right; 
-            margin:4px 2px 2px 20px;
-        }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-  
-    <div class="main">
-  
-      <h1>Node Unblocker</h1>
-      
-      <div id="error"></div>
-
-      <form action="no-js" method="get" id="unblocker-form">
+<div class="cards">
+	
+	<div class="contact">Updates</div>
+	<div class="contact-form">
+		<a href="#" class="close"><i class="fa fa-times"></i></a>
+		<div class="control">
+			<center>
+				<h3>-------V1.2----</h3><br>
+				<h3>Made Better Parser</h3><br>
+				<h3>-------------</h3>
+			</center>
+		</div>
+	</div>
+	
+	 <div class="card active" id="overview">
+		<a class="card-toggle"><i class="fa fa-arrow-circle-left"></i></a>
+		<div class="card-content">
+			<div class="row">
+				<div class="left col">
+					<h2>Rewrite Approved Websites</strong></h2><p>By J4V4SCR1PT
+					
+					<p>Only School-Approved websites are allowed. Other sites have been programmatically blocked<br /><em>Anyway make sure you're running javascript.</em></p>
+				   <form action="no-js" method="get" id="unblocker-form">
         <p>
           URL: 
           <input type="text" id="url" name="url" autofocus="autofocus" />
@@ -79,32 +28,7 @@
         </p>
 
       </form>
-      
-<div id="google-ad">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Nodeunblocker.com -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:336px;height:280px"
-     data-ad-client="ca-pub-9477050254721722"
-     data-ad-slot="3464697570"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-      
-      <h3>About Node Unblocker</h3>
-      <p>Node Unblocker is a web proxy, similar to CGIProxy, PHProxy, or Glype, that allows users to evade filters and censorship and access blocked websites. </p>
-      <p>It's designed to be extremely fast and compatible: It processes the data on-the-fly rather than buffering the entire response, and it only modifies URLs when necessary - relative ones will "just work". </p>
-      <p>Node Unblocker is written in JavaScript with <a href="http://nodejs.org">node.js</a>. The source code is <a href="https://github.com/nfriedly/node-unblocker">available on github</a>.</p>
-
-    </div>
-    
-    <div class="footer">
-      <p><a href="https://github.com/nfriedly/node-unblocker">Node Unblocker</a> by <a href="http://www.nfriedly.com/" title="Node.js developer and JavaScript Expert">Nathan Friedly</a></p>
-    </div>
-  
-  </div>
-	<script>
+				<script>
 		function $(id){
 			return document.getElementById(id);
 		}
@@ -139,5 +63,320 @@
 	</script>
   
   
-</body>
-</html>
+					
+				</div>
+				<div class="right col">
+				</div>
+			</div>
+		</div>
+	</div> 
+	
+
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  background-color: #eaeaea;
+  font-family: Open Sans;
+  font-weight: 300;
+  line-height: 1.8;
+  background-image: url(https://dl.dropboxusercontent.com/u/26808427/cdn/bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contact {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  z-index: 6;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  line-height: 1;
+  cursor: pointer;
+  text-shadow: 0 1px 0px rgba(255, 255, 255, 0.1);
+}
+.contact-form {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: white;
+  z-index: 5;
+  padding: 80px 50px;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  border-radius: 5px;
+}
+.contact-form.active {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.contact-form .close {
+  color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.cards {
+  margin: auto;
+  background: #fefefe;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 3px 5px 20px rgba(0, 0, 0, 0.2);
+  width: 768px;
+  height: 550px;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  padding: 30px;
+}
+.cards .card {
+  display: inline-block;
+  margin-right: 20px;
+}
+.cards .card-toggle {
+  z-index: 4;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 24px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.cards .card-toggle.active {
+  color: white;
+  border-color: white;
+}
+.cards .card-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transition: -webkit-clip-path 1s ease;
+  padding: 100px 0 0;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.cards .card-content .row {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.cards .card-content .col {
+  width: 50%;
+  height: 100%;
+  display: table-cell;
+  -webkit-transition: .3s ease .3s;
+  transition: .3s ease .3s;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  vertical-align: top;
+}
+.cards .card-content .col h2 {
+  font-weight: 300;
+  font-size: 3em;
+  line-height: 1;
+  margin: 0 0 30px;
+}
+.cards .card-content .col h2 strong {
+  font-weight: 700;
+  display: block;
+}
+.cards .card-content .col img {
+  max-width: 90%;
+  width: 100%;
+}
+.cards .card-content .col.left {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  opacity: 0;
+  padding-left: 50px;
+}
+.cards .card-content .col.right {
+  -webkit-transform: translate3d(100px, 0, 0);
+          transform: translate3d(100px, 0, 0);
+  opacity: 0;
+  padding-left: 30px;
+}
+.cards .card.active .col {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+.cards #overview .card-toggle {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  opacity: 1;
+  color: white;
+}
+.cards #overview .card-content {
+  background-color: #efefef;
+  -webkit-clip-path: circle(0% at 91.5% 75px);
+}
+.cards #overview.active .card-toggle {
+  opacity: 0;
+}
+.cards #overview.active .card-content {
+  -webkit-clip-path: circle(270% at 91.5% 75px);
+}
+.cards #overview .right {
+  background: url(https://dl.dropboxusercontent.com/u/26808427/cdn/james.png) no-repeat bottom right;
+  background-size: contain;
+}
+.cards #dribbble .card-content, .cards #behance .card-content, .cards #linkedin .card-content, .cards #twitter .card-content {
+  color: white;
+}
+.cards #dribbble .card-content p, .cards #behance .card-content p, .cards #linkedin .card-content p, .cards #twitter .card-content p {
+  color: rgba(255, 255, 255, 0.8);
+}
+.cards #dribbble .card-content {
+  background-color: #F46899;
+  -webkit-clip-path: circle(0% at 76px 88%);
+  clip-path: circle(0% at 50px 88%);
+}
+.cards #dribbble.active .card-content {
+  -webkit-clip-path: circle(270% at 76px 88%);
+  clip-path: circle(270% at 50px 88%);
+}
+.cards #behance .card-content {
+  background-color: #2F98D1;
+  -webkit-clip-path: circle(0% at 150px 88%);
+  clip-path: circle(0% at 150px 88%);
+}
+.cards #behance.active .card-content {
+  -webkit-clip-path: circle(270% at 150px 88%);
+  clip-path: circle(270% at 150px 88%);
+}
+.cards #linkedin .card-content {
+  background-color: #03679B;
+  -webkit-clip-path: circle(0% at 220px 88%);
+  clip-path: circle(0% at 220px 88%);
+}
+.cards #linkedin.active .card-content {
+  -webkit-clip-path: circle(270% at 220px 88%);
+  clip-path: circle(270% at 220px 88%);
+}
+.cards #twitter .card-content {
+  background-color: #7FD0ED;
+  -webkit-clip-path: circle(0% at 292px 88%);
+  clip-path: circle(0% at 292px 88%);
+}
+.cards #twitter.active .card-content {
+  -webkit-clip-path: circle(270% at 292px 88%);
+  clip-path: circle(270% at 292px 88%);
+}
+
+form .control {
+  position: relative;
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
+form .control label {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+form .control.submit {
+  text-align: right;
+}
+form input, form textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e3e3e3;
+  outline: none;
+  padding: 10px 0;
+}
+form .filled label, form input:focus + label, form textarea:focus + label {
+  top: 0;
+  font-size: 12px;
+}
+form textarea {
+  height: 100px;
+}
+form input[type="submit"] {
+  width: auto;
+  background-color: #F06292;
+  padding: 10px 40px;
+  color: white;
+  border-radius: 40px;
+}
+</style>
+<script>
+	$(".card-toggle").on("click", function(){
+	
+	// Card toggle state 	
+	$(".card-toggle").removeClass("active");
+	$(this).addClass("active");
+	
+	var isAnimating = false;
+	
+	if( !isAnimating ){
+		isAnimating = true;
+		
+		$(".card").find(".card-content").css("z-index",0);
+		$(".card").removeClass("active");
+
+		var that = $(this);
+
+		$(this).siblings().css("z-index",1);
+
+		setTimeout(function(){
+			that.parent().toggleClass("active").find(".card-content").on("transitionend", function(){
+				isAnimating = false;
+			});	;
+			
+		},10);
+	} else {
+		return;
+	}
+});
+
+$("input,textarea").blur(function(){
+	if( $(this).val() ){
+		$(this).parent().addClass("filled");
+	} else {
+		$(this).parent().removeClass("filled");
+	}
+});
+
+$(".contact").on("click",function(){
+	$(".contact-form").toggleClass("active");
+});
+$(".contact-form input[type=submit], .contact-form .close").on("click",function(e){
+	e.preventDefault();
+	$(".contact-form").toggleClass("active")
+});
+</script>
